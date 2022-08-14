@@ -21,7 +21,7 @@ const Settings = () => {
   console.log(user._id);
   const handleDelete = async () => {
     try {
-      await axios.delete(`/settings/${user}`, {
+      await axios.delete(`/server/settings/${user}`, {
         // data: { username: user.username },
       });
       window.location.replace("/");
@@ -45,13 +45,13 @@ const Settings = () => {
       updatedUser.profilePic = filename;
       // console.log(updatedUser.profilePic);
       try {
-        await axios.post("/upload", data);
+        await axios.post("/server/upload", data);
       } catch (err) {
         console.log(err.message);
       }
     }
     try {
-      const res = await axios.put("/users/" + user._id, updatedUser);
+      const res = await axios.put("/server/users/" + user._id, updatedUser);
       setSuccess(true);
       dispatch({ type: "UPDATE_SUCCESS", payload: res.data });
       console.log(user);
